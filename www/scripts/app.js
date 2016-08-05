@@ -6,13 +6,14 @@
 // the 2nd parameter is an array of 'requires'
 
 var db = window.openDatabase("TodoDevDB", "1.0", "Todo Dev Database", 10000); //Dev to work in webview
-
+// var db = $cordovaSQLite.openDB(name:'my.db' location:'default');
 angular.module('todoApp', ['ionic', 'config', 'ngCordova'])
 
 .run(function($ionicPlatform, $cordovaSQLite) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
+
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
@@ -21,11 +22,8 @@ angular.module('todoApp', ['ionic', 'config', 'ngCordova'])
             StatusBar.styleDefault();
         }
 
-
         $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS tasks(id integer primary key, name string, completed boolean, checkdate date)");
         console.log('creating DB');
-
-
     });
 })
     .factory('dateHelper', function($log){
@@ -76,7 +74,7 @@ angular.module('todoApp', ['ionic', 'config', 'ngCordova'])
                     deferred.resolve({
                         rows: []
                     });
-                    $log.warn("Error: ", error);
+                    $log.warn("Error line 77: ", error);
                 }, function(updates) {
                     deferred.update(updates);
                 });
@@ -94,7 +92,7 @@ angular.module('todoApp', ['ionic', 'config', 'ngCordova'])
                         rows: 1
                     });
                 }, function(error) {
-                    console.log("Error: ", error);
+                    console.log("Error line 95: ", error);
                 }, function(updates) {
                     deferred.update(updates);
                 });
@@ -113,7 +111,7 @@ angular.module('todoApp', ['ionic', 'config', 'ngCordova'])
                         rows: 1
                     });
                 }, function(error) {
-                    console.log("Error: ", error);
+                    console.log("Error line 114: ", error);
                 }, function(updates) {
                     deferred.update(updates);
                 });

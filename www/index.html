@@ -15,7 +15,7 @@
     <!-- endbuild -->
 
   </head>
-  <body ng-app="App1" ng-controller="ToDoCtrl" ng-cloak>
+  <body ng-app="todoApp" ng-controller="ToDoCtrl" ng-cloak>
 
     <ion-header-bar class="bar-positive" >
     <button class="button  button-positive" ng-click='editToggle()'>Edit</button>
@@ -37,19 +37,13 @@
     [has-bouncing=""] ng-show="loadView">
 
     <div class="list" ng-cloak>
-      <li class="item item-checkbox item-button-right" ng-repeat="task in Tasks">
-
-
-
+      <li class="item item-checkbox item-button-right" ng-repeat="task in tasks">
          <label class="checkbox checkboxWithBtn">
-           <input type="checkbox" ng-checked="task.payed" ng-click="updateTask(task)">
+           <input type="checkbox" ng-checked="task.completed" ng-click="updateTask(task)">
          </label>
         {{task.name}}
         <button ng-show="showRemove"  ng-click="removeTask(task)" class="button button-small button-assertive">Remove</button>
       </li>
-
-
-
     </div>
 
    <button ng-show="!Tasks.length" class="button button-block button-positive" ng-click="newTask()">Add</button>
@@ -63,7 +57,6 @@
       </ion-header-bar>
       <!-- Modal content area -->
       <ion-content>
-
       <form ng-submit="createTask(task)">
         <div class="list">
           <label class="item item-input">
@@ -74,7 +67,6 @@
           <button type="submit" class="button button-block button-positive">Create Task</button>
         </div>
       </form>
-
       </ion-content>
     </div>
     </script>
